@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: monospace;
+  padding: 1em;
+}
+
+#sketch {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.pred-score {
+  background-color: #fafae8;
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  border: 1px solid rgb(82, 82, 82, 0.5);
+}
+
+h2 {
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+
+button {
+  margin: 0.5em;
+  font-family: monospace;
+  padding: 0.4em 0.8em;
+  background-color: rgb(242, 241, 245);
+  border: 1px solid rgb(190, 190, 190);
+  cursor: pointer;
+}
