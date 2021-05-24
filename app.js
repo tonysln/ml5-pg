@@ -5,17 +5,19 @@ let segmentedVideo;
 
 const runButton = document.getElementById('run');
 runButton.addEventListener('click', modelReady);
+
 const loadingText = document.getElementById('loading');
 const resultsDiv = document.getElementById('results');
+
 const enableUnetCheckbox = document.getElementById('enableUnet');
 let enableUnet = enableUnetCheckbox.checked;
-
 enableUnetCheckbox.addEventListener('change', () => {
   enableUnet = enableUnetCheckbox.checked;
   if (enableUnet) {
     uNet.segment(video, uNetResult);
   }
 });
+
 
 function setup() {
   let canvas = createCanvas(640, 480);
@@ -24,7 +26,7 @@ function setup() {
   video = createCapture(VIDEO);
   video.hide();
 
-  model = ml5.imageClassifier('MobileNet', video, modelReady);
+  model = ml5.imageClassifier('MobileNet', modelReady);
   uNet = ml5.uNet('face');
 }
 
@@ -43,7 +45,11 @@ function modelReady() {
   if (loadingText) {
     loadingText.remove();
   }
-  model.classify(gotResult);
+  if (enableUnet) {
+    model.classify(segmentedVideo, gotResult);
+  } else {
+    model.classify(video, gotResult);
+  }
 }
 
 function gotResult(error, results) {
